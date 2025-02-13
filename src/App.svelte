@@ -2,6 +2,8 @@
   import svelteLogo from './assets/svelte.svg'
   import viteLogo from '/vite.svg'
   import Counter from './lib/Counter.svelte'
+  // Import web components (this will trigger registration)
+  import './wc/web-components'
 </script>
 
 <main>
@@ -14,6 +16,10 @@
     </a>
   </div>
   <h1>Vite + Svelte</h1>
+
+  <h2>Custom element:</h2>
+  <!-- Use your custom elements -->
+  <my-component name="Svelte"></my-component>
 
   <div class="card">
     <Counter />
