@@ -1,47 +1,123 @@
-# Svelte + TS + Vite
 
-This template should help get you started developing with Svelte and TypeScript in Vite.
+# Svelte Web Components Starter
 
-## Recommended IDE Setup
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
+A lightweight starter template for building optimized web components with Svelte 5 and TypeScript. Produces production-ready components with:
+- **20KB** minified (ES format)
+- **8KB** gzipped
+- Custom Elements v1 compliant
 
-## Need an official Svelte framework?
+## Features
 
-Check out [SvelteKit](https://github.com/sveltejs/kit#readme), which is also powered by Vite. Deploy anywhere with its serverless-first approach and adapt to various platforms, with out of the box support for TypeScript, SCSS, and Less, and easily-added support for mdsvex, GraphQL, PostCSS, Tailwind CSS, and more.
+⚡️ Ultra-lightweight output  
+🛠 TypeScript-first development  
+🌐 Universal component format (ES + UMD)  
+🔧 Built-in Vite optimizations  
+🎯 CSS isolation per component  
+📦 Zero-dependency components
 
-## Technical considerations
+## Quick Start
 
-**Why use this over SvelteKit?**
-
-- It brings its own routing solution which might not be preferable for some users.
-- It is first and foremost a framework that just happens to use Vite under the hood, not a Vite app.
-
-This template contains as little as possible to get started with Vite + TypeScript + Svelte, while taking into account the developer experience with regards to HMR and intellisense. It demonstrates capabilities on par with the other `create-vite` templates and is a good starting point for beginners dipping their toes into a Vite + Svelte project.
-
-Should you later need the extended capabilities and extensibility provided by SvelteKit, the template has been structured similarly to SvelteKit so that it is easy to migrate.
-
-**Why `global.d.ts` instead of `compilerOptions.types` inside `jsconfig.json` or `tsconfig.json`?**
-
-Setting `compilerOptions.types` shuts out all other types not explicitly listed in the configuration. Using triple-slash references keeps the default TypeScript setting of accepting type information from the entire workspace, while also adding `svelte` and `vite/client` type information.
-
-**Why include `.vscode/extensions.json`?**
-
-Other templates indirectly recommend extensions via the README, but this file allows VS Code to prompt the user to install the recommended extension upon opening the project.
-
-**Why enable `allowJs` in the TS template?**
-
-While `allowJs: false` would indeed prevent the use of `.js` files in the project, it does not prevent the use of JavaScript syntax in `.svelte` files. In addition, it would force `checkJs: false`, bringing the worst of both worlds: not being able to guarantee the entire codebase is TypeScript, and also having worse typechecking for the existing JavaScript. In addition, there are valid use cases in which a mixed codebase may be relevant.
-
-**Why is HMR not preserving my local component state?**
-
-HMR state preservation comes with a number of gotchas! It has been disabled by default in both `svelte-hmr` and `@sveltejs/vite-plugin-svelte` due to its often surprising behavior. You can read the details [here](https://github.com/rixo/svelte-hmr#svelte-hmr).
-
-If you have state that's important to retain within a component, consider creating an external store which would not be replaced by HMR.
-
-```ts
-// store.ts
-// An extremely simple external store
-import { writable } from 'svelte/store'
-export default writable(0)
+### Installation
+```bash
+npm install
 ```
+
+### Development
+```bash
+npm run dev
+```
+
+### Production Build
+```bash
+npm run build
+```
+
+### Preview Production Build
+```bash
+npm run preview
+```
+
+## Usage
+
+### Import in HTML
+```html
+<script type="module" src="/dist/my-web-components.es.js"></script>
+
+<my-component name="Developer"></my-component>
+```
+
+### Use in JavaScript
+```javascript
+import { MyComponent } from './dist/my-web-components.es.js';
+
+// Components auto-register on import
+```
+
+## Building Components
+
+1. Create new component in `src/wc/`
+```svelte
+<svelte:options customElement="my-element" />
+
+<script lang="ts">
+  export let value: string;
+</script>
+
+<div>Hello {value}</div>
+```
+
+2. Add to `src/wc/web-components.ts`
+```typescript
+export { default as MyElement } from './MyElement.wc.svelte';
+```
+
+3. Rebuild with `npm run build`
+
+## Package Scripts
+
+| Command        | Description                          |
+|----------------|--------------------------------------|
+| `npm run dev`  | Start dev server with HMR            |
+| `npm run build`| Build production-ready components    |
+| `npm run preview` | Locally preview production build |
+| `npm run check` | Validate TypeScript types          |
+
+## Technical Stack
+
+**Core Technologies**  
+- Svelte 5 (custom elements)
+- TypeScript 5
+- Vite 6
+
+**Optimization Features**  
+- Double minification (Terser + esbuild)  
+- Tree-shaking enabled  
+- CSS auto-scoping  
+- Dead code elimination  
+- Gzip-ready outputs
+
+## File Structure
+
+```
+├── src/
+│   ├── wc/                   # Web components
+│   │   ├── MyComponent.wc.svelte
+│   │   └── web-components.ts # Component registry
+│   ├── lib/                  # Svelte components
+│   ├── App.svelte            # Demo application
+│   └── main.ts               # Entry point
+├── vite.config.ts            # Build configuration
+└── svelte.config.js          # Svelte compiler settings
+```
+
+## License
+
+MIT © [Dariusz Sikorski](https://dariuszsikorski.pl)
+
+---
+
+Made with ♥ by [Dariusz Sikorski](https://dariuszsikorski.pl)  
+[![Website](https://img.shields.io/badge/Visit-My%20Website-green?style=flat-square)](https://dariuszsikorski.pl)
+
