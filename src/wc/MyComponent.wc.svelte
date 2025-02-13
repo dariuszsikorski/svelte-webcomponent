@@ -1,5 +1,6 @@
+<svelte:options customElement="my-component" />
+
 <script lang="ts">
-  // Define a property (default value: 'World')
   export let name: string = 'World';
 </script>
 
@@ -7,6 +8,7 @@
   p {
     color: blue;
     font-family: sans-serif;
+    outline: solid 1px red;
   }
 </style>
 

@@ -1,13 +1,13 @@
 <script lang="ts">
-  import svelteLogo from './assets/svelte.svg'
-  import viteLogo from '/vite.svg'
-  import Counter from './lib/Counter.svelte'
+  // import svelteLogo from './assets/svelte.svg'
+  // import viteLogo from '/vite.svg'
+  // import Counter from './lib/Counter.svelte'
   // Import web components (this will trigger registration)
   import './wc/web-components'
 </script>
 
 <main>
-  <div>
+  <!-- <div>
     <a href="https://vite.dev" target="_blank" rel="noreferrer">
       <img src={viteLogo} class="logo" alt="Vite Logo" />
     </a>
@@ -15,12 +15,12 @@
       <img src={svelteLogo} class="logo svelte" alt="Svelte Logo" />
     </a>
   </div>
-  <h1>Vite + Svelte</h1>
+  <h1>Vite + Svelte</h1> -->
 
   <h2>Custom element:</h2>
   <!-- Use your custom elements -->
   <my-component name="Svelte"></my-component>
-
+<!-- 
   <div class="card">
     <Counter />
   </div>
@@ -31,7 +31,7 @@
 
   <p class="read-the-docs">
     Click on the Vite and Svelte logos to learn more
-  </p>
+  </p> -->
 </main>
 
 <style>
