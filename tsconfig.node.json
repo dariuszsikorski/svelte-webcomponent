@@ -19,7 +19,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "types": ["node", "rollup-plugin-terser"]
+    "types": ["node", "@rollup/plugin-terser"]
   },
   "include": ["vite.config.ts"]
 }

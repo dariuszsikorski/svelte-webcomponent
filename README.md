@@ -1,11 +1,10 @@
-
 # Svelte Web Components Starter
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 A lightweight starter template for building optimized web components with Svelte 5 and TypeScript. Produces production-ready components with:
-- **20KB** minified (ES format)
-- **8KB** gzipped
+- **30KB** minified (ES format)
+- **12KB** gzipped
 - Custom Elements v1 compliant
 
 ## Features
@@ -48,6 +47,12 @@ npm run preview
 <my-component name="Developer"></my-component>
 ```
 
+### Preview Production Build
+The build process automatically copies the preview template, so you can directly run:
+```bash
+npm run preview
+```
+
 ### Use in JavaScript
 ```javascript
 import { MyComponent } from './dist/my-web-components.es.js';
@@ -87,9 +92,9 @@ export { default as MyElement } from './MyElement.wc.svelte';
 ## Technical Stack
 
 **Core Technologies**  
-- Svelte 5 (custom elements)
-- TypeScript 5
-- Vite 6
+- Svelte 5.43.0 (custom elements)
+- TypeScript 5.9.3
+- Vite 6.4.1
 
 **Optimization Features**  
 - Double minification (Terser + esbuild)  
@@ -108,9 +113,15 @@ export { default as MyElement } from './MyElement.wc.svelte';
 │   ├── lib/                  # Svelte components
 │   ├── App.svelte            # Demo application
 │   └── main.ts               # Entry point
+├── preview-index.html        # Production preview template
 ├── vite.config.ts            # Build configuration
-└── svelte.config.js          # Svelte compiler settings
+├── svelte.config.js          # Svelte compiler settings
+└── CHANGELOG.md              # Version history
 ```
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for version history and release notes.
 
 ## License
 
@@ -120,4 +131,3 @@ MIT © [Dariusz Sikorski](https://dariuszsikorski.pl)
 
 Made with ♥ by [Dariusz Sikorski](https://dariuszsikorski.pl)  
 [![Website](https://img.shields.io/badge/Visit-My%20Website-green?style=flat-square)](https://dariuszsikorski.pl)
-

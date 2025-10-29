@@ -3,7 +3,8 @@ import { svelte } from '@sveltejs/vite-plugin-svelte'
 import { resolve, dirname } from 'path'
 import { fileURLToPath } from 'url'
 import { transform } from 'esbuild'
-import { terser } from 'rollup-plugin-terser'
+import terser from '@rollup/plugin-terser'
+import { copyFileSync, existsSync } from 'fs'
 
 // Compute __dirname for ES Modules:
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -14,12 +15,28 @@ function minifyEs() {
     name: 'minifyEs',
     renderChunk: {
       order: 'post' as const,
-      async handler(code: string | Uint8Array, chunk: any, outputOptions: { format: string }) {
+      async handler(code: string, _chunk: any, outputOptions: { format: string }) {
         if (outputOptions.format === 'es') {
           const result = await transform(code, { minify: true });
           return result.code;
         }
         return code;
+      }
+    }
+  };
+}
+
+// Plugin to copy preview template to dist after build
+function copyPreviewTemplate() {
+  return {
+    name: 'copy-preview-template',
+    writeBundle() {
+      const previewTemplate = resolve(__dirname, 'preview-index.html');
+      const distIndex = resolve(__dirname, 'dist/index.html');
+      
+      if (existsSync(previewTemplate)) {
+        copyFileSync(previewTemplate, distIndex);
+        console.log('✓ Copied preview-index.html to dist/index.html');
       }
     }
   };
@@ -48,7 +65,8 @@ export default defineConfig(({ command }) => {
             passes: 10,
           },
           mangle: true,
-        })
+        }),
+        copyPreviewTemplate() // copy preview template to dist after build
       ],
       build: {
         lib: {
@@ -88,6 +106,12 @@ export default defineConfig(({ command }) => {
           customElement: true
         }
       })
-    ]
+    ],
+    preview: {
+      port: 4173,
+      strictPort: false,
+      host: true,
+      open: true,
+    }
   }
 })
