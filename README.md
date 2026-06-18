@@ -7,16 +7,21 @@ A lightweight starter template for building optimized web components with Svelte
 - **12.7KB** gzipped
 - Custom Elements v1 compliant
 
+> Note on size: that ~13KB gzip is the Svelte runtime - a one-time cost shared by
+> every component, not paid per component. Each additional component adds only
+> ~0.5KB minified (~60-250 B gzipped). Ten components measure ~13.8KB gzip in one
+> bundle, not 13KB each.
+
 > Dependencies last bumped: **2026-06-18** (see [CHANGELOG.md](CHANGELOG.md)).
 
 ## Features
 
-⚡️ Ultra-lightweight output  
-🛠 TypeScript-first development  
-🌐 Universal component format (ES + UMD)  
-🔧 Built-in Vite optimizations  
-🎯 CSS isolation per component  
-📦 Zero-dependency components
+- Ultra-lightweight output
+- TypeScript-first development
+- Universal component format (ES + UMD)
+- Built-in Vite optimizations
+- CSS isolation per component
+- Zero-dependency components
 
 ## Quick Start
 
