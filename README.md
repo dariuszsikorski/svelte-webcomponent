@@ -3,9 +3,11 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 A lightweight starter template for building optimized web components with Svelte 5 and TypeScript. Produces production-ready components with:
-- **30KB** minified (ES format)
-- **12KB** gzipped
+- **33KB** minified (ES format)
+- **12.7KB** gzipped
 - Custom Elements v1 compliant
+
+> Dependencies last bumped: **2026-06-18** (see [CHANGELOG.md](CHANGELOG.md)).
 
 ## Features
 
@@ -92,12 +94,12 @@ export { default as MyElement } from './MyElement.wc.svelte';
 ## Technical Stack
 
 **Core Technologies**  
-- Svelte 5.43.0 (custom elements)
-- TypeScript 5.9.3
-- Vite 6.4.1
+- Svelte 5.56.3 (custom elements)
+- TypeScript 6.0.3
+- Vite 8.0.16
 
 **Optimization Features**  
-- Double minification (Terser + esbuild)  
+- Terser minification (Vite native)  
 - Tree-shaking enabled  
 - CSS auto-scoping  
 - Dead code elimination  

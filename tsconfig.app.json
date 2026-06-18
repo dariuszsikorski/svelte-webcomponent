@@ -15,7 +15,7 @@
     "checkJs": true,
     "isolatedModules": true,
     "moduleDetection": "force",
-    "types": ["node", "rollup-plugin-terser"]
+    "types": ["node"]
   },
   "include": ["src/**/*.ts", "src/**/*.js", "src/**/*.svelte"]
 }
