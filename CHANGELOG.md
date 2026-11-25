@@ -5,6 +5,53 @@ All notable changes to svelte-webcomponent will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.0] - 2026-11-25
+
+### Changed
+- Bumped all dependencies to latest stable versions:
+
+  | Package | From | To |
+  |---|---|---|
+  | `@sveltejs/vite-plugin-svelte` | ^7.1.2 | ^7.3.2 |
+  | `@tsconfig/svelte` | ^5.0.8 | ^5.0.9 |
+  | `@types/node` | ^25.9.3 | ^26.6.10 |
+  | `svelte` | ^5.56.3 | ^5.59.2 |
+  | `svelte-check` | ^4.6.0 | ^4.7.8 |
+  | `terser` | ^5.45.0 | ^5.51.4 |
+  | `vite` | ^8.0.16 | ^8.3.8 |
+
+- `MyComponent.wc.svelte` rewritten as a current reference: runes (`$props()`) instead of
+  legacy `export let`, typed `props` config (`count` as Number, `name` reflected), and a
+  `count-change` event dispatched through `$host()`.
+- Runes mode enabled for the whole project (`compilerOptions.runes: true`).
+- Custom elements are selected per file by the function form of
+  `compilerOptions.customElement` in `svelte.config.js`. `vite.config.ts` now has one
+  `svelte()` plugin instance and one shared config for dev and build.
+- Bundle size is now 44.67 kB (gzip 17.13 kB) ES, 44.00 kB (gzip 17.10 kB) UMD. About
+  10 kB of that came with Svelte 5.59.0 (custom renderer API); 5.58.0 built the old
+  component at 34.22 kB. Output is still fully minified.
+
+### Removed
+- `rollupOptions.external` / `globals` for `svelte` and `svelte/internal` in `vite.config.ts`.
+  Svelte 5 imports `svelte/internal/client`, so nothing was ever externalized - the runtime
+  is bundled, which is what a standalone web component needs.
+
+### Fixed
+- `src/global.d.ts`: dropped the `SvelteComponentTyped` shim (removed in Svelte 5)
+  and the stale `rollup-plugin-terser` module declaration.
+- `web-components.ts` comment showed Svelte 3 syntax (`<svelte:options tag>`).
+
+### Not changed
+- TypeScript stays on ^6.0.3: `svelte-check` 4.7.8 declares peer `typescript ^5 || ^6`.
+  TypeScript 7 works only via `svelte-check --tsgo` with an extra `@typescript/native` package.
+- Terser stays the minifier: Vite's default (Oxc) produced a 60.93 kB ES file vs 43.67 kB.
+
+### Verified
+- `npm install` clean, 0 vulnerabilities.
+- `npm run build` and `npm run check` pass (0 errors, 4 pre-existing unused-CSS warnings).
+- Built bundle loaded in headless Chromium: element registers, renders, `count` attribute
+  converts to a number, `name` property reflects to the attribute, `count-change` fires.
+
 ## [0.1.0] - 2026-06-18
 
 ### Changed

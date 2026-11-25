@@ -19,7 +19,7 @@
 
   <h2>Custom element:</h2>
   <!-- Use your custom elements -->
-  <my-component name="Svelte"></my-component>
+  <my-component name="Svelte" oncount-change={(event: CustomEvent<{ count: number }>) => console.log('count-change', event.detail.count)}></my-component>
 <!-- 
   <div class="card">
     <Counter />
